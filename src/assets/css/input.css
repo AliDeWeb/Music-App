@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "abel-reg";
+    src: url("src/assets/fonts/abel/Abel-Regular.ttf") format("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "inter-reg";
+    src: url("src/assets/fonts/inter/Inter-Regular.ttf") format("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "abel-sem";
+    src: url("src/assets/fonts/inter/Inter-SemiBold.ttf") format("ttf");
+    font-display: swap;
+  }
+}
