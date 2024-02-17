@@ -6,7 +6,10 @@ import Typewriter from "typewriter-effect";
 
 export default function Home() {
   return (
-    <div className="container bg-[#131313] h-screen relative">
+    <div
+      style={{ height: "100dvh" }}
+      className="container bg-[#131313] relative"
+    >
       <div className="absolute right-0 left-0 bottom-8 md:bottom-0 md:top-0 mx-auto flex justify-center items-center flex-col">
         <h1 className="text-white text-4xl font-inter-sem mb-10">
           <Typewriter
