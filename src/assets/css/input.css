@@ -16,6 +16,12 @@
   }
 
   @font-face {
+    font-family: "inter-bold";
+    src: url("src/assets/fonts/inter/Inter-Bold.ttf") format("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
     font-family: "abel-sem";
     src: url("src/assets/fonts/inter/Inter-SemiBold.ttf") format("ttf");
     font-display: swap;

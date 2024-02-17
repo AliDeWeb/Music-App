@@ -15,7 +15,12 @@ export default {
         "abel-reg": "abel-reg",
         "inter-reg": "inter-reg",
         "inter-sem": "inter-sem",
+        "inter-bold": "inter-bold",
       },
+    },
+    container: {
+      center: true,
+      padding: "2rem",
     },
   },
   plugins: [
