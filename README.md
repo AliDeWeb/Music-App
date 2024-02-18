@@ -16,7 +16,7 @@ This React app is a fully-functional music player with a customizable UI, built 
 
 ## Get started:
 
-1. Clone the repo: git clone https://github.com/your-username/react-music-player.git
+1. Clone the repo: git clone https://github.com/AliDeWeb/music-app.git
 2. Install the dependencies: npm install
 3. Start the app: npm start
 
@@ -24,11 +24,11 @@ This React app is a fully-functional music player with a customizable UI, built 
 
 ## ✨ Check out these cool features:
 
-* Responsive design: The app looks great on any device, from desktop to mobile.
-* Customizable UI: Choose from a variety of themes to match your style.
-* Seamless playback: Enjoy your music without interruptions.
-* Repeat and shuffle: Listen to your music on repeat or in a shuffled order.
-* Search: Find the songs you're looking for quickly and easily.
+- Responsive design: The app looks great on any device, from desktop to mobile.
+- Customizable UI: Choose from a variety of themes to match your style.
+- Seamless playback: Enjoy your music without interruptions.
+- Repeat and shuffle: Listen to your music on repeat or in a shuffled order.
+- Search: Find the songs you're looking for quickly and easily.
 
 ## Demo Link:
 
@@ -37,7 +37,6 @@ See Demo By Clicking [Here](https://music-app.liara.run/).
 **Made with love by developers, for developers.**
 
 **We hope you enjoy using React Music Player!**
-
 
 ** Contributing **
 
@@ -50,4 +49,3 @@ If you find any bugs or issues, please report them on GitHub. We'll do our best 
 ** Thanks **
 
 Thanks to everyone who has contributed to React Music Player!
-
