@@ -27,7 +27,7 @@ export default function Home() {
         </h1>
         <MainButton path="/" width="261" content="Get started" bg="#FF2E00" />
         <SecondryButton
-          path="/"
+          path="/login"
           width="261"
           content="Continue with Email"
           bg="#FF2E00"
