@@ -1,8 +1,9 @@
 import React from "react";
 
 import { MainButton } from "../../components/Buttons/Buttons";
-import { postUsersLoginData } from "../../setting/Funcs/funcs";
+import { postUsersLoginData, emailAuth } from "../../setting/Funcs/funcs";
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
+import FloatAlert from "../../components/FloatAlert/FloatAlert";
 
 //? Hooks
 import { useState } from "react";
@@ -14,12 +15,27 @@ export default function LoginPage() {
   const [userPassword, setUserPassword] = useState("");
   const [userConformPassword, setUserConformPassword] = useState("");
 
+  const [isEmailTrue, setIsEmailTrue] = useState(true);
+  const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
+  const [isDataValid, setIsDataValid] = useState(false);
+
   return (
     <div
       style={{ height: "100dvh" }}
       className="container bg-[#131313] flex items-center justify-center"
     >
       <PreviosPage />
+      {isDataValid ? <FloatAlert type="success" content="Let's Go..." /> : ""}
+      {!isEmailTrue ? (
+        <FloatAlert type="error" content="Email Is Not Valid!" />
+      ) : (
+        ""
+      )}
+      {!isPasswordsMatch ? (
+        <FloatAlert type="error" content="Passwords Are Not Valid!" />
+      ) : (
+        ""
+      )}
       <form className="flex flex-col justify-center items-center w-[400px]">
         <label
           className="font-inter-bold text-white mb-2 text-lg block text-start w-full"
@@ -93,15 +109,40 @@ export default function LoginPage() {
           clickHandler={(e) => {
             e.preventDefault();
 
-            let userData = {
-              username: userName,
-              email: userEmail,
-              password: userPassword,
-            };
+            if (!emailAuth(userEmail)) {
+              setUserEmail((prev) => "");
 
-            postUsersLoginData("", userData, () => {
-              useNavigate("/main");
-            });
+              setIsEmailTrue((prev) => false);
+
+              setTimeout(() => {
+                setIsEmailTrue((prev) => true);
+              }, 3000);
+            }
+
+            if (!(userPassword === userConformPassword)) {
+              setUserPassword((prev) => "");
+              setUserConformPassword((prev) => "");
+
+              setIsPasswordsMatch((prev) => false);
+
+              setTimeout(() => {
+                setIsPasswordsMatch((prev) => true);
+              }, 3000);
+            }
+
+            if (isEmailTrue && isPasswordsMatch && userName.length) {
+              setIsDataValid((prev) => true);
+
+              let userData = {
+                username: userName,
+                email: userEmail,
+                password: userPassword,
+              };
+
+              postUsersLoginData("", userData, () => {
+                useNavigate("/main");
+              });
+            }
           }}
         />
       </form>
