@@ -2,6 +2,7 @@ import React from "react";
 
 import { MainButton } from "../../components/Buttons/Buttons";
 import { postUsersLoginData } from "../../setting/Funcs/funcs";
+import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
 //? Hooks
 import { useState } from "react";
@@ -18,6 +19,7 @@ export default function LoginPage() {
       style={{ height: "100dvh" }}
       className="container bg-[#131313] flex items-center justify-center"
     >
+      <PreviosPage />
       <form className="flex flex-col justify-center items-center w-[400px]">
         <label
           className="font-inter-bold text-white mb-2 text-lg block text-start w-full"
