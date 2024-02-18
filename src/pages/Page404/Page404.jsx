@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { SecondryButton } from "../../components/Buttons/Buttons";
 
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Page404() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  }, []);
+
   return (
     <div
       style={{ height: "100dvh" }}
