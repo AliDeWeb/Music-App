@@ -38,14 +38,20 @@ See Demo By Clicking [Here](https://music-app.liara.run/).
 
 **We hope you enjoy using React Music Player!**
 
-** Contributing **
+## Contributing
 
 We welcome contributions from the community! If you have any suggestions or bug fixes, please feel free to open an issue on GitHub.
 
-** Bugs and issues **
+## Signs Meaning 🐱‍👤
+
+- 😍: A component or A Page Development Completed
+- 🧐: Add Features Or A Feature Change
+- 😎: Fix Bugs
+
+## Bugs and issues
 
 If you find any bugs or issues, please report them on GitHub. We'll do our best to fix them as soon as possible.
 
-** Thanks **
+## Thanks
 
 Thanks to everyone who has contributed to React Music Player!
