@@ -3,3 +3,22 @@
 body {
   overflow-x: hidden;
 }
+
+.rhap_current-time,
+.rhap_time.rhap_total-time {
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.rhap_button-clear.rhap_repeat-button,
+.rhap_button-clear.rhap_main-controls-button.rhap_rewind-button,
+.rhap_button-clear.rhap_main-controls-button.rhap_forward-button,
+.rhap_button-clear.rhap_volume-button,
+.rhap_button-clear.rhap_main-controls-button.rhap_play-pause-button {
+  color: #fff !important;
+}
+
+.rhap_volume-indicator,
+.rhap_progress-indicator {
+  background: #6b6969 !important;
+}
