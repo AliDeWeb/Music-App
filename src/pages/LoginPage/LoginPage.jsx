@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 import { MainButton } from "../../components/Buttons/Buttons";
 import { postUsersLoginData, emailAuth } from "../../setting/Funcs/funcs";
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
 import FloatAlert from "../../components/FloatAlert/FloatAlert";
-
-//? Hooks
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [userName, setUserName] = useState("");
@@ -18,6 +16,24 @@ export default function LoginPage() {
   const [isEmailTrue, setIsEmailTrue] = useState(true);
   const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
   const [isDataValid, setIsDataValid] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (emailAuth(userEmail)) {
+      setIsEmailTrue((prev) => true);
+    } else {
+      setIsEmailTrue((prev) => false);
+    }
+  }, [userEmail]);
+
+  useEffect(() => {
+    if (userPassword === userConformPassword) {
+      setIsPasswordsMatch((prev) => true);
+    } else {
+      setIsPasswordsMatch((prev) => false);
+    }
+  }, [userPassword, userConformPassword]);
 
   return (
     <div
@@ -38,7 +54,7 @@ export default function LoginPage() {
       )}
       <form className="flex flex-col justify-center items-center w-[400px]">
         <label
-          className="font-inter-bold text-white mb-2 text-lg block text-start w-full"
+          className="cursor-pointer font-inter-bold text-white mb-2 text-lg block text-start w-full"
           htmlFor="username"
         >
           Username:
@@ -54,7 +70,7 @@ export default function LoginPage() {
           value={userName}
         />
         <label
-          className="font-inter-bold text-white mb-2 text-lg block text-start w-full"
+          className="cursor-pointer font-inter-bold text-white mb-2 text-lg block text-start w-full"
           htmlFor="email"
         >
           Email:
@@ -70,7 +86,7 @@ export default function LoginPage() {
           value={userEmail}
         />
         <label
-          className="font-inter-bold text-white mb-2 text-lg block text-start w-full"
+          className="cursor-pointer font-inter-bold text-white mb-2 text-lg block text-start w-full"
           htmlFor="password"
         >
           Password:
@@ -86,7 +102,7 @@ export default function LoginPage() {
           value={userPassword}
         />
         <label
-          className="font-inter-bold text-white mb-2 text-lg block text-start w-full"
+          className="cursor-pointer font-inter-bold text-white mb-2 text-lg block text-start w-full"
           htmlFor="password-conform"
         >
           Conform Password:
@@ -109,27 +125,6 @@ export default function LoginPage() {
           clickHandler={(e) => {
             e.preventDefault();
 
-            if (!emailAuth(userEmail)) {
-              setUserEmail((prev) => "");
-
-              setIsEmailTrue((prev) => false);
-
-              setTimeout(() => {
-                setIsEmailTrue((prev) => true);
-              }, 3000);
-            }
-
-            if (!(userPassword === userConformPassword)) {
-              setUserPassword((prev) => "");
-              setUserConformPassword((prev) => "");
-
-              setIsPasswordsMatch((prev) => false);
-
-              setTimeout(() => {
-                setIsPasswordsMatch((prev) => true);
-              }, 3000);
-            }
-
             if (isEmailTrue && isPasswordsMatch && userName.length) {
               setIsDataValid((prev) => true);
 
@@ -139,9 +134,13 @@ export default function LoginPage() {
                 password: userPassword,
               };
 
-              postUsersLoginData("", userData, () => {
-                useNavigate("/main");
-              });
+              postUsersLoginData(
+                "https://65cf5950bdb50d5e5f5b1701.mockapi.io/users",
+                userData,
+                () => {
+                  navigate("/Home")
+                }
+              );
             }
           }}
         />
