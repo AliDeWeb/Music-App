@@ -6,6 +6,8 @@ import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
 import { useNavigate } from "react-router-dom";
 
+import img404 from "../../assets/imgs/gifs/img404.png";
+
 export default function Page404() {
   const navigate = useNavigate();
 
@@ -22,11 +24,7 @@ export default function Page404() {
     >
       <PreviosPage />
       <div className="mb-5 w-52 sm:w-auto">
-        <img
-          className="size-full"
-          src="src\assets\imgs\gifs\404.png"
-          alt="img"
-        />
+        <img className="size-full" src={img404} alt="img" />
       </div>
       <SecondryButton path="/" content="Main Page" />
     </div>
