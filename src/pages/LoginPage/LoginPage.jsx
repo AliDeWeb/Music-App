@@ -135,10 +135,10 @@ export default function LoginPage() {
               };
 
               postUsersLoginData(
-                "https://65cf5950bdb50d5e5f5b1701.mockapi.io/users",
+                "https://65d3889f522627d5010918fd.mockapi.io/users",
                 userData,
                 () => {
-                  navigate("/Home")
+                  navigate("/list");
                 }
               );
             }
