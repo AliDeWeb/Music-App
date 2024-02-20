@@ -25,15 +25,17 @@ export default function NavigationBar() {
       <div className="container py-7">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-between">
-            <div className="w-10 h-10 ml-4 mr-3">
+            <div className="w-10 h-10 ml-4 mr-10">
               <Link to="/">
                 <img src={siteLogo} alt="img" />
               </Link>
             </div>
-            <nav className="text-white flex items-center gap-5">
+            <nav className="text-white flex items-center gap-8 child:transition-all">
               <NavLink
                 className={(link) =>
-                  link.isActive ? "active-page" : "not-active-page"
+                  link.isActive
+                    ? "active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
+                    : "not-active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
                 }
                 to="/"
               >
@@ -41,7 +43,9 @@ export default function NavigationBar() {
               </NavLink>
               <NavLink
                 className={(link) =>
-                  link.isActive ? "active-page" : "not-active-page"
+                  link.isActive
+                    ? "active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
+                    : "not-active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
                 }
                 to="/list"
               >
@@ -49,7 +53,9 @@ export default function NavigationBar() {
               </NavLink>
               <NavLink
                 className={(link) =>
-                  link.isActive ? "active-page" : "not-active-page"
+                  link.isActive
+                    ? "active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
+                    : "not-active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
                 }
                 to="/uploadfile"
               >
@@ -57,7 +63,9 @@ export default function NavigationBar() {
               </NavLink>
               <NavLink
                 className={(link) =>
-                  link.isActive ? "active-page" : "not-active-page"
+                  link.isActive
+                    ? "active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
+                    : "not-active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
                 }
                 to="/aboutus"
               >
