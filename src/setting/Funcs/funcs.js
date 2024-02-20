@@ -16,6 +16,18 @@ function postUsersLoginData(url, userData, callback) {
     });
 }
 
+function getUserData(url, userId, callback) {
+  fetch(`${url}${userId}.json`)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 //? Regex Auth
 function emailAuth(email) {
   let regex =
@@ -24,4 +36,4 @@ function emailAuth(email) {
   return regex.test(email);
 }
 
-export { postUsersLoginData, emailAuth };
+export { postUsersLoginData, emailAuth, getUserData };

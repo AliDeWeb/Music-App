@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 
+import PreviosPage from "../../components/PreviosPage/PreviosPage";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
+
 export default function MusicsList() {
   const [songs, setSongs] = useState([]);
   const navigate = useNavigate();
@@ -22,6 +25,8 @@ export default function MusicsList() {
 
   return (
     <div className="container bg-[#131313] min-h-[100dvh]">
+      <PreviosPage />
+      <NavigationBar />
       <div className="w-full lg:w-4/5 mx-auto">
         {window.innerWidth > 1024 ? (
           <table className="font-inter-sem border-separate border-spacing-5 table-fixed text-white w-full">

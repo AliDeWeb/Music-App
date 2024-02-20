@@ -22,3 +22,15 @@ body {
 .rhap_progress-indicator {
   background: #6b6969 !important;
 }
+
+.active-page {
+  color: rgb(220 38 38);
+  transform: scale(1.2);
+  font-family: "inter-bold";
+  font-weight: bold;
+}
+
+.not-active-page {
+  font-family: "inter-bold";
+  font-weight: normal;
+}
