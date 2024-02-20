@@ -2,14 +2,18 @@ function postUsersLoginData(url, userData, callback) {
   fetch(url, {
     method: "POST",
     "Content-Type": "application/json",
-    body: userData,
-  }).then((res) => {
-    if (res.ok) {
-      callback();
-    } else {
-      return false;
-    }
-  });
+    body: JSON.stringify(userData),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => {
+      callback(res);
+    });
 }
 
 //? Regex Auth

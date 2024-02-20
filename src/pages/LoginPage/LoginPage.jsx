@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { MainButton } from "../../components/Buttons/Buttons";
 import { postUsersLoginData, emailAuth } from "../../setting/Funcs/funcs";
+import { postUsersDataApi } from "../../setting/Funcs/API";
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
 import FloatAlert from "../../components/FloatAlert/FloatAlert";
 
@@ -134,13 +135,10 @@ export default function LoginPage() {
                 password: userPassword,
               };
 
-              postUsersLoginData(
-                "https://65d3889f522627d5010918fd.mockapi.io/users",
-                userData,
-                () => {
-                  navigate("/list");
-                }
-              );
+              postUsersLoginData(postUsersDataApi, userData, (res) => {
+                localStorage.setItem(`userId`, JSON.stringify(res));
+                navigate("/list");
+              });
             }
           }}
         />
