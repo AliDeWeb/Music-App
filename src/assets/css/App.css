@@ -34,3 +34,31 @@ body {
   font-family: "inter-bold";
   font-weight: normal;
 }
+
+/* 
+  Scroll Bar
+*/
+
+::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 1rem;
+
+  background-color: #131313;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+
+  background-color: rgba(235, 233, 233, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(235, 233, 233, 0.6);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(235, 233, 233, 0.2);
+}
