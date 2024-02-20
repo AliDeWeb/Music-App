@@ -16,13 +16,15 @@ export default function NavigationBar() {
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
-    getUserData(
-      getUserDataApi,
-      JSON.parse(localStorage.getItem(`userId`)).name,
-      (res) => {
-        setUserName(res.username);
-      }
-    );
+    if (localStorage.getItem(`userId`)) {
+      getUserData(
+        getUserDataApi,
+        JSON.parse(localStorage.getItem(`userId`)).name,
+        (res) => {
+          setUserName(res.username);
+        }
+      );
+    }
   }, []);
 
   return (
