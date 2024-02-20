@@ -13,6 +13,12 @@ export default function Player() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!localStorage.getItem(`userId`)) {
+      navigate("/login");
+    }
+  });
+
+  useEffect(() => {
     fetch(`https://65d3889f522627d5010918fd.mockapi.io/song_lists/${param.id}`)
       .then((res) => {
         if (res.ok) {

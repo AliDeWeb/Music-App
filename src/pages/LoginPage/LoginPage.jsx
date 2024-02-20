@@ -9,6 +9,8 @@ import PreviosPage from "../../components/PreviosPage/PreviosPage";
 import FloatAlert from "../../components/FloatAlert/FloatAlert";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -18,7 +20,11 @@ export default function LoginPage() {
   const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
   const [isDataValid, setIsDataValid] = useState(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem(`userId`)) {
+      navigate("/list");
+    }
+  });
 
   useEffect(() => {
     if (emailAuth(userEmail)) {

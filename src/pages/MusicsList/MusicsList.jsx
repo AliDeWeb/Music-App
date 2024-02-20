@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 export default function MusicsList() {
   const [songs, setSongs] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem(`userId`)) {
+      navigate("/login");
+    }
+  });
 
   useEffect(() => {
     fetch("https://65d3889f522627d5010918fd.mockapi.io/song_lists")
