@@ -64,7 +64,7 @@ export default function Player() {
         </div>
       ) : (
         <>
-          <PreviosPage />
+          <PreviosPage path="/list" />
           <div className="rounded-xl overflow-hidden mb-5 shadow-md shadow-slate-700 w-[240px] sm:w-[340px]">
             <img src={songData?.cover} alt="img" />
           </div>
