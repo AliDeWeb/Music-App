@@ -21,12 +21,6 @@ export default function LoginPage() {
   const [isDataValid, setIsDataValid] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(`userId`)) {
-      navigate("/list");
-    }
-  });
-
-  useEffect(() => {
     if (emailAuth(userEmail)) {
       setIsEmailTrue((prev) => true);
     } else {
