@@ -54,46 +54,45 @@ export default function Player() {
   }, [musicId]);
 
   return (
-    <div
-      style={{ height: "100dvh" }}
-      className="container bg-[#131313] flex justify-end sm:justify-center items-center flex-col"
-    >
-      {!isDataLoaded ? (
-        <div className="mb-5">
-          <Loader />
-        </div>
-      ) : (
-        <>
-          <PreviosPage path="/list" />
-          <div className="rounded-xl overflow-hidden mb-5 shadow-md shadow-slate-700 w-[240px] sm:w-[340px]">
-            <img src={songData?.cover} alt="img" />
+    <div className="bg-[#131313]">
+      <div className="container h-[100dvh] flex justify-end sm:justify-center items-center flex-col">
+        {!isDataLoaded ? (
+          <div className="mb-5">
+            <Loader />
           </div>
-          <h1 className="text-white font-inter-bold text-2xl mb-2">
-            {songData?.title}
-          </h1>
-          <span className="text-white font-inter-reg text-sm">
-            {songData?.singer}
-          </span>
-          <AudioPlayer
-            showSkipControls
-            showDownloadProgress={false}
-            showJumpControls={false}
-            onPlayError={() => <FloatAlert type="error" content="Error!" />}
-            className="audio-player"
-            src={songData?.src}
-            onClickNext={() => {
-              setMusicId(String(+param.id + 1));
-            }}
-            onClickPrevious={() => {
-              if (!(+param.id === 1)) {
-                setMusicId(String(+param.id - 1));
-              } else {
-                return false;
-              }
-            }}
-          />
-        </>
-      )}
+        ) : (
+          <>
+            <PreviosPage path="/list" />
+            <div className="rounded-xl overflow-hidden mb-5 shadow-md shadow-slate-700 w-[240px] sm:w-[340px]">
+              <img src={songData?.cover} alt="img" />
+            </div>
+            <h1 className="text-white font-inter-bold text-2xl mb-2">
+              {songData?.title}
+            </h1>
+            <span className="text-white font-inter-reg text-sm">
+              {songData?.singer}
+            </span>
+            <AudioPlayer
+              showSkipControls
+              showDownloadProgress={false}
+              showJumpControls={false}
+              onPlayError={() => <FloatAlert type="error" content="Error!" />}
+              className="audio-player"
+              src={songData?.src}
+              onClickNext={() => {
+                setMusicId(String(+param.id + 1));
+              }}
+              onClickPrevious={() => {
+                if (!(+param.id === 1)) {
+                  setMusicId(String(+param.id - 1));
+                } else {
+                  return false;
+                }
+              }}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }

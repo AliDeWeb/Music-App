@@ -31,25 +31,27 @@ export default function MusicsList() {
   }, [songs]);
 
   return (
-    <div className="container bg-[#131313] min-h-[100dvh]">
-      <PreviosPage />
-      <NavigationBar />
-      {!isDatasLoaded ? (
-        <Loader />
-      ) : (
-        <div className="flex items-center justify-center gap-5 flex-wrap">
-          {songs.map((el) => (
-            <MusicBox
-              key={el.id}
-              path={`/play/${el.id}`}
-              title={el.title}
-              singer={el.singer}
-              cover={el.cover}
-              genre={el.genre}
-            />
-          ))}
-        </div>
-      )}
+    <div className="bg-[#131313]">
+      <div className="container min-h-[100dvh]">
+        <PreviosPage />
+        <NavigationBar />
+        {!isDatasLoaded ? (
+          <Loader />
+        ) : (
+          <div className="flex items-center justify-center gap-5 flex-wrap">
+            {songs.map((el) => (
+              <MusicBox
+                key={el.id}
+                path={`/play/${el.id}`}
+                title={el.title}
+                singer={el.singer}
+                cover={el.cover}
+                genre={el.genre}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
