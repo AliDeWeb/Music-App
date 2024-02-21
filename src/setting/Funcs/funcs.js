@@ -1,7 +1,9 @@
 function postUsersLoginData(url, userData, callback) {
   fetch(url, {
     method: "POST",
-    "Content-Type": "application/json",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(userData),
   })
     .then((res) => {
@@ -28,6 +30,24 @@ function getUserData(url, userId, callback) {
     .then((res) => callback(res));
 }
 
+function postSongData(url, songData, callback) {
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(songData),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 //? Regex Auth
 function emailAuth(email) {
   let regex =
@@ -36,4 +56,4 @@ function emailAuth(email) {
   return regex.test(email);
 }
 
-export { postUsersLoginData, emailAuth, getUserData };
+export { postUsersLoginData, emailAuth, getUserData, postSongData };
