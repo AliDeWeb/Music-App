@@ -37,7 +37,7 @@ export default function NavigationBar() {
                 <img src={siteLogo} alt="img" />
               </Link>
             </div>
-            <nav className="text-white hidden md:flex items-center gap-8 child:transition-all">
+            <nav className="text-white hidden lg:flex items-center gap-8 child:transition-all">
               <NavLink
                 className={(link) =>
                   link.isActive
@@ -80,7 +80,7 @@ export default function NavigationBar() {
               </NavLink>
             </nav>
           </div>
-          <div className="hidden py-1 px-10 bg-[#131313] text-xl border border-[#FF2E00] rounded-2xl md:flex justify-center items-center text-[#FF2E00] hover:bg-[#ff2f001f] hover:text-[#fff] transition-all">
+          <div className="hidden py-1 px-10 bg-[#131313] text-xl border border-[#FF2E00] rounded-2xl lg:flex justify-center items-center text-[#FF2E00] hover:bg-[#ff2f001f] hover:text-[#fff] transition-all">
             <button>
               <Link
                 className="text-white capitalize font-inter-bold font-bold"
@@ -90,7 +90,7 @@ export default function NavigationBar() {
               </Link>
             </button>
           </div>
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div>
               <RxHamburgerMenu
                 onClick={() => {
