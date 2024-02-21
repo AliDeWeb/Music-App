@@ -10,9 +10,15 @@ import Loader from "../../components/Loader/Loader";
 
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
+import FloatAlert from "../../components/FloatAlert/FloatAlert";
+
 export default function Player() {
   const param = useParams();
   const navigate = useNavigate();
+
+  const [musicId, setMusicId] = useState(param.id);
+  const [songData, setSongData] = useState({});
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem(`userId`)) {
@@ -21,12 +27,13 @@ export default function Player() {
   });
 
   useEffect(() => {
-    fetch(`https://65d3889f522627d5010918fd.mockapi.io/song_lists/${param.id}`)
+    fetch(`https://65d3889f522627d5010918fd.mockapi.io/song_lists/${musicId}`)
       .then((res) => {
-        if (res.ok) {
+        if (res.ok === true) {
           return res.json();
         } else {
-          navigate(-1);
+          navigate("/play/1");
+          setMusicId("1");
         }
       })
       .then((res) => {
@@ -36,12 +43,15 @@ export default function Player() {
           src: res.src,
           cover: res.cover,
         });
+
         setIsDataLoaded(true);
       });
-  }, []);
+  }, [musicId]);
 
-  const [songData, setSongData] = useState({});
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  useEffect(() => {
+    setIsDataLoaded(false);
+    navigate(`/play/${musicId}`);
+  }, [musicId]);
 
   return (
     <div
@@ -64,7 +74,24 @@ export default function Player() {
           <span className="text-white font-inter-reg text-sm">
             {songData?.singer}
           </span>
-          <AudioPlayer className="audio-player" src={songData?.src} />
+          <AudioPlayer
+            showSkipControls
+            showDownloadProgress={false}
+            showJumpControls={false}
+            onPlayError={() => <FloatAlert type="error" content="Error!" />}
+            className="audio-player"
+            src={songData?.src}
+            onClickNext={() => {
+              setMusicId(String(+param.id + 1));
+            }}
+            onClickPrevious={() => {
+              if (!(+param.id === 1)) {
+                setMusicId(String(+param.id - 1));
+              } else {
+                return false;
+              }
+            }}
+          />
         </>
       )}
     </div>
