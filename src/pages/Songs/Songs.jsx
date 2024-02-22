@@ -263,6 +263,7 @@ export default function Songs() {
           itemArray={[
             { title: "Upload", path: "uploadfile" },
             { title: "Users", path: "users" },
+            { title: "Songs", path: "songs" },
           ]}
         />
         {showPage ? (
