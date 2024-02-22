@@ -5,14 +5,16 @@ import Player from "../pages/Player/Player.jsx";
 import MusicsList from "../pages/MusicsList/MusicsList.jsx";
 import UploadSong from "../pages/UploadSong/UploadSong.jsx";
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard.jsx";
+import Users from "../pages/Users/Users.jsx";
 
 let routesPath = [
   { path: "/", element: <Home /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/play/:id", element: <Player /> },
   { path: "/list", element: <MusicsList /> },
-  { path: "/uploadfile", element: <UploadSong /> },
   { path: "/admin-panel", element: <AdminDashboard /> },
+  { path: "/uploadfile", element: <UploadSong /> },
+  { path: "/users", element: <Users /> },
   { path: "/*", element: <Page404 /> },
 ];
 

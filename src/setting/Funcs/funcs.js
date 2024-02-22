@@ -18,6 +18,18 @@ function postUsersLoginData(url, userData, callback) {
     });
 }
 
+function getUsersData(url, callback) {
+  fetch(`${url}`)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 function getUserData(url, userId, callback) {
   fetch(`${url}${userId}.json`)
     .then((res) => {
@@ -48,6 +60,20 @@ function postSongData(url, songData, callback) {
     .then((res) => callback(res));
 }
 
+function deleteUser(url, userId, callback) {
+  fetch(`${url}${userId}.json`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 //? Regex Auth
 function emailAuth(email) {
   let regex =
@@ -56,4 +82,11 @@ function emailAuth(email) {
   return regex.test(email);
 }
 
-export { postUsersLoginData, emailAuth, getUserData, postSongData };
+export {
+  postUsersLoginData,
+  emailAuth,
+  getUserData,
+  postSongData,
+  getUsersData,
+  deleteUser,
+};

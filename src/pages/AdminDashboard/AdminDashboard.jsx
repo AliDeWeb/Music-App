@@ -34,7 +34,12 @@ export default function AdminDashboard() {
     <div className="min-h-[100dvh] bg-[#131313]">
       <PreviosPage />
       <div className="container">
-        <NavigationBar itemArray={[{ title: "Upload", path: "uploadfile" }]} />
+        <NavigationBar
+          itemArray={[
+            { title: "Upload", path: "uploadfile" },
+            { title: "Users", path: "users" },
+          ]}
+        />
         {showPage ? (
           <div className="flex">
             <div className="hidden lg:block lg:w-1/6">
