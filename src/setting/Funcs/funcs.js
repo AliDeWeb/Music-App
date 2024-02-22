@@ -98,6 +98,20 @@ function deleteUser(url, userId, callback) {
     .then((res) => callback(res));
 }
 
+function deleteSong(url, songId, callback) {
+  fetch(`${url}${songId}.json`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 function editUserData(url, userData, userId, callback) {
   fetch(`${url}${userId}.json`, {
     method: "PUT",
@@ -105,6 +119,24 @@ function editUserData(url, userData, userId, callback) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(userData),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
+function editSongData(url, songData, songId, callback) {
+  fetch(`${url}${songId}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(songData),
   })
     .then((res) => {
       if (res.ok) {
@@ -138,4 +170,6 @@ export {
   editUserData,
   getSongsData,
   getSongData,
+  deleteSong,
+  editSongData,
 };

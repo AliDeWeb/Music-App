@@ -43,7 +43,7 @@ export default function AdminPanelSideBar() {
               ? "flex items-center gap-2 text-red-600 pl-3"
               : "flex items-center gap-2 text-white transition-all relative before:content-[''] before:w-[0] before:h-[7px] before:bg-red-600 before:rounded-full before:absolute before:top-0 before:bottom-0 before:left-1 before:my-auto before:transition-all  hover:pl-[30px] hover:before:w-[20px]"
           }
-          to="/"
+          to="/songs"
         >
           <IoMusicalNotesOutline color="#fff" />
           Songs List

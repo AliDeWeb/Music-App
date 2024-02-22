@@ -60,7 +60,7 @@ export default function AdminDashboard() {
                 <SecondryButton content="Home" path="/" />
                 <SecondryButton content="Upload Song" path="/uploadfile" />
                 <SecondryButton content="Users List" path="/users" />
-                <SecondryButton content="Songs List" path="/" />
+                <SecondryButton content="Songs List" path="/songs" />
               </div>
             </div>
           </div>
