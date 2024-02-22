@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { adminUsername } from "../../setting/Funcs/funcs";
+
 import siteLogo from "../../assets/imgs/primary-imgs/site-logo.png";
 
 import { Link, NavLink } from "react-router-dom";
@@ -79,7 +81,7 @@ export default function NavigationBar(props) {
             </nav>
           </div>
           <div className="hidden lg:flex items-center justify-center gap-4">
-            {userName === "alideweb" ? (
+            {userName === adminUsername ? (
               <button className="py-1 px-4 bg-[#131313] text-xl border border-[#FF2E00] rounded-2xl lg:flex justify-center items-center text-[#FF2E00] hover:bg-[#ff2f001f] hover:text-[#fff] transition-all">
                 <Link
                   className="text-white capitalize font-inter-bold font-bold"
@@ -146,7 +148,7 @@ export default function NavigationBar(props) {
             <Link className="px-1 py-0.5" to="/aboutus">
               About Us
             </Link>
-            {userName === "alideweb" ? (
+            {userName === adminUsername ? (
               <Link className="px-1 py-0.5" to="/admin-panel">
                 Panel
               </Link>

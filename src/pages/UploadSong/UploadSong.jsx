@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { adminUsername } from "../../setting/Funcs/funcs";
+
 import { MainButton } from "../../components/Buttons/Buttons";
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
@@ -30,7 +32,7 @@ export default function UploadSong() {
       getUserData(getUserDataApi, user, (res) => {
         if (!res) {
           navigate("/login");
-        } else if (res.username === "alideweb") {
+        } else if (res.username === adminUsername) {
           setShowPage(true);
         } else {
           setShowPage(false);

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { adminUsername } from "../../setting/Funcs/funcs";
+
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../../setting/Funcs/funcs";
 import { getUserDataApi } from "../../setting/Funcs/API";
@@ -24,7 +26,7 @@ export default function AdminDashboard() {
         if (!res) {
           console.log(res);
           navigate("/login");
-        } else if (res.username === "alideweb") {
+        } else if (res.username === adminUsername) {
           setShowPage(true);
         } else {
           setShowPage(false);

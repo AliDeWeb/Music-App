@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "../../assets/css/output.css";
+import { adminUsername } from "../../setting/Funcs/funcs";
 
 import { useNavigate } from "react-router-dom";
 
@@ -50,7 +50,7 @@ export default function Users() {
       getUserData(getUserDataApi, user, (res) => {
         if (!res) {
           navigate("/login");
-        } else if (res.username === "alideweb") {
+        } else if (res.username === adminUsername) {
           setShowPage(true);
         } else {
           setShowPage(false);

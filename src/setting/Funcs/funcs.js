@@ -100,7 +100,11 @@ function emailAuth(email) {
   return regex.test(email);
 }
 
+//? Admin Username
+const adminUsername = "alideweb";
+
 export {
+  adminUsername,
   postUsersLoginData,
   emailAuth,
   getUserData,
