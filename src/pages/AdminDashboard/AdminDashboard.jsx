@@ -10,6 +10,8 @@ import AdminPanelSideBar from "../../components/AdminPanelSideBar/AdminPanelSide
 
 import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
+import { SecondryButton } from "../../components/Buttons/Buttons";
+
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [showPage, setShowPage] = useState(false);
@@ -52,6 +54,12 @@ export default function AdminDashboard() {
               <h1 className="text-white font-inter-bold font-bold text-3xl text-center mt-5">
                 Welcome Dear Admin...
               </h1>
+              <div className="px-8 mt-5 flex flex-wrap justify-center items-center gap-5">
+                <SecondryButton content="Home" path="/" />
+                <SecondryButton content="Upload Song" path="/uploadfile" />
+                <SecondryButton content="Users List" path="/users" />
+                <SecondryButton content="Songs List" path="/" />
+              </div>
             </div>
           </div>
         ) : (
