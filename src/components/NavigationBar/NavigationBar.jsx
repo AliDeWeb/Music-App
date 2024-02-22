@@ -10,7 +10,7 @@ import { getUserData } from "../../setting/Funcs/funcs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
   const [userName, setUserName] = useState("");
 
   const [showMenu, setShowMenu] = useState(false);
@@ -64,24 +64,26 @@ export default function NavigationBar() {
                     ? "active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
                     : "not-active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
                 }
-                to="/uploadfile"
-              >
-                Upload Song
-              </NavLink>
-              <NavLink
-                className={(link) =>
-                  link.isActive
-                    ? "active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
-                    : "not-active-page hover:border hover:border-red-600 hover:shadow-lg hover:shadow-zinc-600 rounded px-1 py-0.5"
-                }
                 to="/aboutus"
               >
                 About Us
               </NavLink>
             </nav>
           </div>
-          <div className="hidden py-1 px-10 bg-[#131313] text-xl border border-[#FF2E00] rounded-2xl lg:flex justify-center items-center text-[#FF2E00] hover:bg-[#ff2f001f] hover:text-[#fff] transition-all">
-            <button>
+          <div className="hidden lg:flex items-center justify-center gap-4">
+            {userName === "alideweb" ? (
+              <button className="py-1 px-4 bg-[#131313] text-xl border border-[#FF2E00] rounded-2xl lg:flex justify-center items-center text-[#FF2E00] hover:bg-[#ff2f001f] hover:text-[#fff] transition-all">
+                <Link
+                  className="text-white capitalize font-inter-bold font-bold"
+                  to="/admin-panel"
+                >
+                  Panel
+                </Link>
+              </button>
+            ) : (
+              ""
+            )}
+            <button className="py-1 px-10 bg-[#131313] text-xl border border-[#FF2E00] rounded-2xl lg:flex justify-center items-center text-[#FF2E00] hover:bg-[#ff2f001f] hover:text-[#fff] transition-all">
               <Link
                 className="text-white capitalize font-inter-bold font-bold"
                 to="/dashboard"
@@ -133,12 +135,27 @@ export default function NavigationBar() {
             <Link className="px-1 py-0.5" to="/list">
               Songs List
             </Link>
-            <Link className="px-1 py-0.5" to="/uploadfile">
-              Upload Song
-            </Link>
             <Link className="px-1 py-0.5" to="/aboutus">
               About Us
             </Link>
+            {userName === "alideweb" ? (
+              <Link className="px-1 py-0.5" to="/admin-panel">
+                Panel
+              </Link>
+            ) : (
+              ""
+            )}
+            {props.itemArray
+              ? props.itemArray.map((el) => (
+                  <Link
+                    key={Math.random()}
+                    className="px-1 py-0.5"
+                    to={`/${el.path}`}
+                  >
+                    {el.title}
+                  </Link>
+                ))
+              : ""}
           </nav>
         </div>
 
