@@ -677,6 +677,22 @@ video {
   top: 2.25rem;
 }
 
+.top-2 {
+  top: 0.5rem;
+}
+
+.left-3 {
+  left: 0.75rem;
+}
+
+.top-3 {
+  top: 0.75rem;
+}
+
+.left-2 {
+  left: 0.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -825,6 +841,10 @@ video {
 
 .h-\[430px\] {
   height: 430px;
+}
+
+.h-\[450px\] {
+  height: 450px;
 }
 
 .min-h-\[100dvh\] {
@@ -1173,6 +1193,11 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .pb-6 {

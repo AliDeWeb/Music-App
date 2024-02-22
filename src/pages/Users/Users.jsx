@@ -19,6 +19,7 @@ import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
 import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export default function Users() {
   const navigate = useNavigate();
@@ -99,8 +100,22 @@ export default function Users() {
       <div className="container">
         {showEditModal ? (
           <div className="w-screen h-[100dvh] backdrop-blur-md fixed z-50 top-0 right-0 left-0 m-auto flex items-center justify-center">
-            <div className="w-96 h-[430px] bg-[#1d1d1d] rounded-2xl">
-              <form className="text-white font-bold font-inter-bold flex flex-col px-6 py-3">
+            <div className="relative w-[400px] h-[450px] bg-[#1d1d1d] rounded-2xl">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  setEdittingUserId("");
+                  setEdittingUserUsername("");
+                  setEdittingUserEmail("");
+                  setEdittingUserPassword("");
+                  setShowEditModal(false);
+                }}
+                className="absolute top-2 left-2"
+              >
+                <IoMdCloseCircleOutline color="#fff" size="1.5em" />
+              </button>
+              <form className="text-white font-bold font-inter-bold flex flex-col px-10 py-5">
                 <label className="mb-3 text-lg" htmlFor="username">
                   Username
                 </label>
