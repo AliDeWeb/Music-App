@@ -74,6 +74,24 @@ function deleteUser(url, userId, callback) {
     .then((res) => callback(res));
 }
 
+function editUserData(url, userData, userId, callback) {
+  fetch(`${url}${userId}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 //? Regex Auth
 function emailAuth(email) {
   let regex =
@@ -89,4 +107,5 @@ export {
   postSongData,
   getUsersData,
   deleteUser,
+  editUserData,
 };

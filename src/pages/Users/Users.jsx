@@ -3,32 +3,44 @@ import React, { useEffect, useState } from "react";
 import "../../assets/css/output.css";
 
 import { useNavigate } from "react-router-dom";
+
 import { getUserData } from "../../setting/Funcs/funcs";
 import { getUserDataApi } from "../../setting/Funcs/API";
-
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
-
-import AdminPanelSideBar from "../../components/AdminPanelSideBar/AdminPanelSideBar";
-
-import PreviosPage from "../../components/PreviosPage/PreviosPage";
-
+import { deleteUser } from "../../setting/Funcs/funcs";
+import { deleteUserApi } from "../../setting/Funcs/API";
 import { getUsersData } from "../../setting/Funcs/funcs";
 import { getUsersDataApi } from "../../setting/Funcs/API";
+import { editUserApi } from "../../setting/Funcs/API";
+import { editUserData } from "../../setting/Funcs/funcs";
+
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import AdminPanelSideBar from "../../components/AdminPanelSideBar/AdminPanelSideBar";
+import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
 import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-
-import { deleteUser } from "../../setting/Funcs/funcs";
-import { deleteUserApi } from "../../setting/Funcs/API";
-
-import FloatAlert from "../../components/FloatAlert/FloatAlert";
 
 export default function Users() {
   const navigate = useNavigate();
   const [showPage, setShowPage] = useState(false);
   const [users, setUsers] = useState([]);
+  const [showLoaderModal, setShowLoaderModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [edittingUserId, setEdittingUserId] = useState("");
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [edittingUserUsername, setEdittingUserUsername] = useState("");
+  const [edittingUserEmail, setEdittingUserEmail] = useState("");
+  const [edittingUserPassword, setEdittingUserPassword] = useState("");
+
+  useEffect(() => {
+    if (edittingUserId) {
+      getUserData(getUserDataApi, edittingUserId, (res) => {
+        setEdittingUserUsername(res.username);
+        setEdittingUserEmail(res.email);
+        setEdittingUserPassword(res.password);
+      });
+    }
+  }, [edittingUserId]);
 
   useEffect(() => {
     if (localStorage.getItem(`userId`)) {
@@ -56,7 +68,7 @@ export default function Users() {
   return (
     <div className="min-h-[100dvh] bg-[#131313]">
       <PreviosPage />
-      {showDeleteModal ? (
+      {showLoaderModal ? (
         <div className="w-screen h-[100dvh] backdrop-blur-md fixed top-0 right-0 left-0 bottom-0 z-50 flex justify-center items-center">
           <svg
             className="animate-spin -ml-1 mr-3 h-32 w-32 text-white"
@@ -83,6 +95,85 @@ export default function Users() {
         ""
       )}
       <div className="container">
+        {showEditModal ? (
+          <div className="w-screen h-[100dvh] backdrop-blur-md fixed z-50 top-0 right-0 left-0 m-auto flex items-center justify-center">
+            <div className="w-96 h-[430px] bg-[#1d1d1d] rounded-2xl">
+              <form className="text-white font-bold font-inter-bold flex flex-col px-6 py-3">
+                <label className="mb-3 text-lg" htmlFor="username">
+                  Username
+                </label>
+                <input
+                  className="bg-red-600/20 rounded-3xl py-2 px-5 mb-10 border-none outline-none"
+                  type="text"
+                  id="username"
+                  value={edittingUserUsername}
+                  onChange={(e) => {
+                    setEdittingUserUsername(
+                      e.target.value.trim().toLowerCase()
+                    );
+                  }}
+                />
+                <label className="mb-3 text-lg" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="bg-red-600/20 rounded-3xl py-2 px-5 mb-10 border-none outline-none"
+                  type="text"
+                  id="email"
+                  value={edittingUserEmail}
+                  onChange={(e) => {
+                    setEdittingUserEmail(e.target.value.trim().toLowerCase());
+                  }}
+                />
+                <label className="mb-3 text-lg" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="bg-red-600/20 rounded-3xl py-2 px-5 mb-10 border-none outline-none"
+                  type="text"
+                  id="password"
+                  value={edittingUserPassword}
+                  onChange={(e) => {
+                    setEdittingUserPassword(
+                      e.target.value.trim().toLowerCase()
+                    );
+                  }}
+                />
+
+                <input
+                  type="submit"
+                  className="cursor-pointer rounded-3xl py-2 px-5 bg-red-600/20"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    let userDatas = {
+                      username: edittingUserUsername,
+                      email: edittingUserEmail,
+                      password: edittingUserPassword,
+                    };
+
+                    setShowLoaderModal(true);
+
+                    editUserData(editUserApi, userDatas, edittingUserId, () => {
+                      setEdittingUserId("");
+                      setEdittingUserUsername("");
+                      setEdittingUserEmail("");
+                      setEdittingUserPassword("");
+                      setShowEditModal(false);
+                      getUsersData(getUsersDataApi, (res) => {
+                        let usersArray = Object.entries(res);
+                        setUsers((prev) => usersArray);
+                        setShowLoaderModal(false);
+                      });
+                    });
+                  }}
+                />
+              </form>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
         <NavigationBar
           itemArray={[
             { title: "Upload", path: "uploadfile" },
@@ -124,16 +215,22 @@ export default function Users() {
                             </td>
                             <td className="p-1.5 bg-gray-800">{el[1].email}</td>
                             <td className="p-1.5 bg-gray-800 rounded-r-md flex items-center justify-start gap-2 h-[41px]">
-                              <button>
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setEdittingUserId(el[0]);
+                                  setShowEditModal(true);
+                                }}
+                              >
                                 <MdModeEditOutline size="1.2em" color="#fff" />
                               </button>
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();
-                                  setShowDeleteModal(true);
+                                  setShowLoaderModal(true);
                                   deleteUser(deleteUserApi, el[0], () => {
                                     getUsersData(getUsersDataApi, (res) => {
-                                      setShowDeleteModal(false);
+                                      setShowLoaderModal(false);
                                       let usersArray = Object.entries(res);
                                       setUsers((prev) => usersArray);
                                     });
