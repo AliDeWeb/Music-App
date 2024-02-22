@@ -12,6 +12,8 @@ import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
 import FloatAlert from "../../components/FloatAlert/FloatAlert";
 
+import { getSongsData } from "../../setting/Funcs/funcs";
+import { getSongsDataApi } from "../../setting/Funcs/API";
 import { getSongData } from "../../setting/Funcs/funcs";
 import { getSongDataApi } from "../../setting/Funcs/API";
 
@@ -23,10 +25,22 @@ export default function Player() {
   const [songData, setSongData] = useState({});
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
+  const [songs, setSongs] = useState([]);
+  const [currentMusicIndex, setCurrentMusicIndex] = useState(-1);
+
   useEffect(() => {
     if (!localStorage.getItem(`userId`)) {
       navigate("/login");
     }
+
+    getSongsData(getSongsDataApi, (res) => {
+      setSongs(Object.entries(res));
+    });
+  }, []);
+
+  useEffect(() => {
+    let currentsongIndex = songs.findIndex((el) => el[0] === musicId);
+    setCurrentMusicIndex(currentsongIndex);
   });
 
   useEffect(() => {
@@ -78,11 +92,19 @@ export default function Player() {
               className="audio-player"
               src={songData?.src}
               onClickNext={() => {
-                setMusicId(String(+param.id + 1));
+                if (currentMusicIndex === songs.length - 1) {
+                  return false;
+                } else {
+                  setMusicId(songs[currentMusicIndex + 1][0]);
+                }
               }}
               onClickPrevious={() => {
                 if (!(+param.id === 1)) {
-                  setMusicId(String(+param.id - 1));
+                  if (currentMusicIndex === 0) {
+                    return false;
+                  } else {
+                    setMusicId(songs[currentMusicIndex - 1][0]);
+                  }
                 } else {
                   return false;
                 }
