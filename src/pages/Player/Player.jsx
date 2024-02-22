@@ -12,6 +12,9 @@ import PreviosPage from "../../components/PreviosPage/PreviosPage";
 
 import FloatAlert from "../../components/FloatAlert/FloatAlert";
 
+import { getSongData } from "../../setting/Funcs/funcs";
+import { getSongDataApi } from "../../setting/Funcs/API";
+
 export default function Player() {
   const param = useParams();
   const navigate = useNavigate();
@@ -27,16 +30,10 @@ export default function Player() {
   });
 
   useEffect(() => {
-    fetch(`https://65d3889f522627d5010918fd.mockapi.io/song_lists/${musicId}`)
-      .then((res) => {
-        if (res.ok === true) {
-          return res.json();
-        } else {
-          navigate("/play/1");
-          setMusicId("1");
-        }
-      })
-      .then((res) => {
+    getSongData(getSongDataApi, musicId, (res) => {
+      if (!res) {
+        navigate("/list");
+      } else {
         setSongData({
           title: res.title,
           singer: res.singer,
@@ -45,7 +42,8 @@ export default function Player() {
         });
 
         setIsDataLoaded(true);
-      });
+      }
+    });
   }, [musicId]);
 
   useEffect(() => {

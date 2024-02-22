@@ -42,6 +42,30 @@ function getUserData(url, userId, callback) {
     .then((res) => callback(res));
 }
 
+function getSongsData(url, callback) {
+  fetch(url)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
+function getSongData(url, songId, callback) {
+  fetch(`${url}${songId}.json`)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return false;
+      }
+    })
+    .then((res) => callback(res));
+}
+
 function postSongData(url, songData, callback) {
   fetch(url, {
     method: "POST",
@@ -112,4 +136,6 @@ export {
   getUsersData,
   deleteUser,
   editUserData,
+  getSongsData,
+  getSongData,
 };
