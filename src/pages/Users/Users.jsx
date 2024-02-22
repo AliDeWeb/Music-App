@@ -21,11 +21,14 @@ import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
+import { SecondryButton, MainButton } from "../../components/Buttons/Buttons";
+
 export default function Users() {
   const navigate = useNavigate();
   const [showPage, setShowPage] = useState(false);
   const [users, setUsers] = useState([]);
   const [showLoaderModal, setShowLoaderModal] = useState(false);
+  const [showConformDeleteModal, setShowConformDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [edittingUserId, setEdittingUserId] = useState("");
 
@@ -71,6 +74,41 @@ export default function Users() {
   return (
     <div className="min-h-[100dvh] bg-[#131313]">
       <PreviosPage />
+      {showConformDeleteModal ? (
+        <div className="w-screen h-[100dvh] backdrop-blur-md fixed z-50 top-0 right-0 left-0 m-auto flex items-center justify-center">
+          <div className="w-[580px] h-[250px] bg-[#1d1d1d] rounded-2xl flex flex-col justify-center items-center text-white font-inter-bold font-bold text-xl">
+            <p className="mb-6">Are Sure You Want To Delete The User?</p>
+            <div className="flex gap-3">
+              <SecondryButton
+                clickHandler={(e) => {
+                  e.preventDefault();
+                  setEdittingUserId("");
+                  setShowConformDeleteModal(false);
+                }}
+                content="Cancel"
+              />
+              <MainButton
+                clickHandler={(e) => {
+                  e.preventDefault();
+                  setShowLoaderModal(true);
+                  deleteUser(deleteUserApi, edittingUserId, () => {
+                    setEdittingUserId("");
+                    setShowConformDeleteModal(false);
+                    getUsersData(getUsersDataApi, (res) => {
+                      setShowLoaderModal(false);
+                      let usersArray = Object.entries(res);
+                      setUsers((prev) => usersArray);
+                    });
+                  });
+                }}
+                content="Conform"
+              />
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       {showLoaderModal ? (
         <div className="w-screen h-[100dvh] backdrop-blur-md fixed top-0 right-0 left-0 bottom-0 z-50 flex justify-center items-center">
           <svg
@@ -244,14 +282,8 @@ export default function Users() {
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();
-                                  setShowLoaderModal(true);
-                                  deleteUser(deleteUserApi, el[0], () => {
-                                    getUsersData(getUsersDataApi, (res) => {
-                                      setShowLoaderModal(false);
-                                      let usersArray = Object.entries(res);
-                                      setUsers((prev) => usersArray);
-                                    });
-                                  });
+                                  setEdittingUserId(el[0]);
+                                  setShowConformDeleteModal(true);
                                 }}
                               >
                                 <MdDelete size="1.2em" color="#fff" />
