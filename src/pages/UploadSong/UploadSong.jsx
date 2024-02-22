@@ -28,7 +28,9 @@ export default function UploadSong() {
       const user = JSON.parse(localStorage.getItem(`userId`)).name;
 
       getUserData(getUserDataApi, user, (res) => {
-        if (res.username === "alideweb") {
+        if (!res) {
+          navigate("/login");
+        } else if (res.username === "alideweb") {
           setShowPage(true);
         } else {
           setShowPage(false);

@@ -2,6 +2,8 @@
 
 body {
   overflow-x: hidden;
+
+  font-family: "abel-sem";
 }
 
 .rhap_current-time,

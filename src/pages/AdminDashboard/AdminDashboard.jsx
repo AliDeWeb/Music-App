@@ -19,7 +19,10 @@ export default function AdminDashboard() {
       const user = JSON.parse(localStorage.getItem(`userId`)).name;
 
       getUserData(getUserDataApi, user, (res) => {
-        if (res.username === "alideweb") {
+        if (!res) {
+          console.log(res);
+          navigate("/login");
+        } else if (res.username === "alideweb") {
           setShowPage(true);
         } else {
           setShowPage(false);

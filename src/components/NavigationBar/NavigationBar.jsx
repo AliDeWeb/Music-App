@@ -10,10 +10,14 @@ import { getUserData } from "../../setting/Funcs/funcs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
 
+import { useNavigate } from "react-router-dom";
+
 export default function NavigationBar(props) {
   const [userName, setUserName] = useState("");
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem(`userId`)) {
@@ -21,7 +25,11 @@ export default function NavigationBar(props) {
         getUserDataApi,
         JSON.parse(localStorage.getItem(`userId`)).name,
         (res) => {
-          setUserName(res.username);
+          if (!res) {
+            navigate("/login");
+          } else {
+            setUserName(res.username);
+          }
         }
       );
     }
