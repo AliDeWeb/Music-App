@@ -43,12 +43,7 @@ export default function UploadSong() {
     <div className="bg-[#131313] min-h-[100dvh]">
       <div className="container">
         <PreviosPage />
-        <NavigationBar
-          itemArray={[
-            { title: "Panel", path: "admin-panel" },
-            { title: "Upload", path: "uploadfile" },
-          ]}
-        />
+        <NavigationBar itemArray={[{ title: "Upload", path: "uploadfile" }]} />
         {showPage ? (
           <>
             <div className="flex">
