@@ -1,66 +1,54 @@
-@import url("./output.css");
-
+@import url(output.css);
 body {
   overflow-x: hidden;
-
-  font-family: "abel-sem";
+  font-family: abel-sem;
 }
-
 .rhap_current-time,
 .rhap_time.rhap_total-time {
   color: #fff !important;
-  font-weight: bold !important;
+  font-weight: 700 !important;
 }
-
-.rhap_button-clear.rhap_repeat-button,
-.rhap_button-clear.rhap_main-controls-button.rhap_rewind-button,
 .rhap_button-clear.rhap_main-controls-button.rhap_forward-button,
-.rhap_button-clear.rhap_volume-button,
-.rhap_button-clear.rhap_main-controls-button.rhap_play-pause-button {
+.rhap_button-clear.rhap_main-controls-button.rhap_play-pause-button,
+.rhap_button-clear.rhap_main-controls-button.rhap_rewind-button,
+.rhap_button-clear.rhap_repeat-button,
+.rhap_button-clear.rhap_volume-button {
   color: #fff !important;
 }
-
-.rhap_volume-indicator,
-.rhap_progress-indicator {
+.rhap_progress-indicator,
+.rhap_volume-indicator {
   background: #6b6969 !important;
 }
-
 .active-page {
   color: rgb(220 38 38);
   transform: scale(1.2);
-  font-family: "inter-bold";
-  font-weight: bold;
+  font-family: inter-bold;
+  font-weight: 700;
 }
-
 .not-active-page {
-  font-family: "inter-bold";
-  font-weight: normal;
+  font-family: inter-bold;
+  font-weight: 400;
 }
-
-/* 
-  Scroll Bar
-*/
-
 ::-webkit-scrollbar {
   width: 0.5vw;
 }
-
 ::-webkit-scrollbar-track {
   border-radius: 1rem;
-
   background-color: #131313;
 }
-
 ::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-
   background-color: rgba(235, 233, 233, 0.8);
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(235, 233, 233, 0.6);
 }
-
 ::-webkit-scrollbar-thumb:active {
   background-color: rgba(235, 233, 233, 0.2);
+}
+.audio-player {
+  background-color: #131313 !important;
+  border-radius: 1rem !important;
+  max-width: 340px !important;
+  margin-bottom: 5rem !important;
 }
