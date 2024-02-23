@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 
 export default function AdminPanelSideBar() {
   return (
-    <div className="divide-y-[1px] divide-gray-400  font-inter-sem font-bold text-lg h-[90dvh] overflow-auto">
+    <div className="sticky top-20 divide-y-[1px] divide-gray-400  font-inter-sem font-bold text-lg h-[90dvh] overflow-auto">
       <div className="py-6 pl-2">
         <NavLink
           className={(link) =>

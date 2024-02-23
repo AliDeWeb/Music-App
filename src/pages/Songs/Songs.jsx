@@ -316,7 +316,7 @@ export default function Songs() {
                                   setShowEditModal(true);
                                 }}
                               >
-                                <MdModeEditOutline size="1.2em" color="#fff" />
+                                <MdModeEditOutline size="1.5em" color="#fff" />
                               </button>
                               <button
                                 onClick={(e) => {
@@ -325,7 +325,7 @@ export default function Songs() {
                                   setShowConformDeleteModal(true);
                                 }}
                               >
-                                <MdDelete size="1.2em" color="#fff" />
+                                <MdDelete size="1.5em" color="#fff" />
                               </button>
                             </td>
                           </tr>
