@@ -85,6 +85,7 @@ export default function Player() {
               {songData?.singer}
             </span>
             <AudioPlayer
+              autoPlay={true}
               showSkipControls
               showDownloadProgress={false}
               showJumpControls={false}
