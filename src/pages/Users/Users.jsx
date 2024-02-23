@@ -13,10 +13,6 @@ import { getUsersDataApi } from "../../setting/Funcs/API";
 import { editUserApi } from "../../setting/Funcs/API";
 import { editUserData } from "../../setting/Funcs/funcs";
 
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import AdminPanelSideBar from "../../components/AdminPanelSideBar/AdminPanelSideBar";
-import PreviosPage from "../../components/PreviosPage/PreviosPage";
-
 import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
@@ -73,7 +69,6 @@ export default function Users() {
 
   return (
     <div className="min-h-[100dvh] bg-[#131313]">
-      <PreviosPage />
       {showConformDeleteModal ? (
         <div className="w-screen h-[100dvh] backdrop-blur-md fixed z-50 top-0 right-0 left-0 m-auto flex items-center justify-center">
           <div className="w-[580px] h-[250px] bg-[#1d1d1d] rounded-2xl flex flex-col justify-center items-center text-white font-inter-bold font-bold text-xl">
@@ -229,13 +224,7 @@ export default function Users() {
         ) : (
           ""
         )}
-        <NavigationBar
-          itemArray={[
-            { title: "Upload", path: "uploadfile" },
-            { title: "Users", path: "users" },
-            { title: "Songs", path: "songs" },
-          ]}
-        />
+
         {showPage ? (
           <div className="flex justify-center">
             {window.innerWidth < 640 ? (
@@ -246,57 +235,52 @@ export default function Users() {
               </h2>
             ) : (
               <>
-                <div className="hidden lg:block lg:w-1/6">
-                  <AdminPanelSideBar />
-                </div>
-                <div className="w-full lg:w-5/6 px-10">
-                  <table className="table-auto text-white w-full">
-                    <thead>
-                      <tr>
-                        <th className="text-left pb-6">#</th>
-                        <th className="text-left pb-6">Username</th>
-                        <th className="text-left pb-6">Email</th>
-                        <th className="text-left pb-6">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {users.map((el, index) => (
-                        <React.Fragment key={Math.random()}>
-                          <tr>
-                            <td className="p-1.5 bg-red-500 rounded-l-md">
-                              {index + 1}
-                            </td>
-                            <td className="p-1.5 pl-5 bg-gray-800">
-                              {el[1].username}
-                            </td>
-                            <td className="p-1.5 bg-gray-800">{el[1].email}</td>
-                            <td className="p-1.5 bg-gray-800 rounded-r-md flex items-center justify-start gap-2 h-[41px]">
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setEdittingUserId(el[0]);
-                                  setShowEditModal(true);
-                                }}
-                              >
-                                <MdModeEditOutline size="1.2em" color="#fff" />
-                              </button>
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setEdittingUserId(el[0]);
-                                  setShowConformDeleteModal(true);
-                                }}
-                              >
-                                <MdDelete size="1.2em" color="#fff" />
-                              </button>
-                            </td>
-                          </tr>
-                          <br />
-                        </React.Fragment>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <table className="table-auto text-white w-full">
+                  <thead>
+                    <tr>
+                      <th className="text-left pb-6">#</th>
+                      <th className="text-left pb-6">Username</th>
+                      <th className="text-left pb-6">Email</th>
+                      <th className="text-left pb-6">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((el, index) => (
+                      <React.Fragment key={Math.random()}>
+                        <tr>
+                          <td className="p-1.5 bg-red-500 rounded-l-md">
+                            {index + 1}
+                          </td>
+                          <td className="p-1.5 pl-5 bg-gray-800">
+                            {el[1].username}
+                          </td>
+                          <td className="p-1.5 bg-gray-800">{el[1].email}</td>
+                          <td className="p-1.5 bg-gray-800 rounded-r-md flex items-center justify-start gap-2 h-[41px]">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setEdittingUserId(el[0]);
+                                setShowEditModal(true);
+                              }}
+                            >
+                              <MdModeEditOutline size="1.2em" color="#fff" />
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setEdittingUserId(el[0]);
+                                setShowConformDeleteModal(true);
+                              }}
+                            >
+                              <MdDelete size="1.2em" color="#fff" />
+                            </button>
+                          </td>
+                        </tr>
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                </table>
               </>
             )}
           </div>

@@ -39,7 +39,7 @@ export default function NavigationBar(props) {
 
   return (
     <>
-      <header className="sticky top-0 backdrop-blur-md">
+      <header className="backdrop-blur-md">
         <div className="container py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-between">

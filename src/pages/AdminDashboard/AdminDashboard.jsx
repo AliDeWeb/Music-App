@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { adminUsername } from "../../setting/Funcs/funcs";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { getUserData } from "../../setting/Funcs/funcs";
 import { getUserDataApi } from "../../setting/Funcs/API";
 
@@ -43,9 +43,9 @@ export default function AdminDashboard() {
       <div className="container">
         <NavigationBar
           itemArray={[
-            { title: "Upload", path: "uploadfile" },
-            { title: "Users", path: "users" },
-            { title: "Songs", path: "songs" },
+            { title: "Upload", path: "admin-panel/uploadfile" },
+            { title: "Users", path: "admin-panel/users" },
+            { title: "Songs", path: "admin-panel/songs" },
           ]}
         />
         {showPage ? (
@@ -59,10 +59,21 @@ export default function AdminDashboard() {
               </h1>
               <div className="px-8 mt-5 flex flex-wrap justify-center items-center gap-5">
                 <SecondryButton content="Home" path="/" />
-                <SecondryButton content="Upload Song" path="/uploadfile" />
-                <SecondryButton content="Users List" path="/users" />
-                <SecondryButton content="Songs List" path="/songs" />
+                <SecondryButton
+                  content="Upload Song"
+                  path="/admin-panel/uploadfile"
+                />
+                <SecondryButton
+                  content="Users List"
+                  path="/admin-panel/users"
+                />
+                <SecondryButton
+                  content="Songs List"
+                  path="/admin-panel/songs"
+                />
               </div>
+              <hr className="my-5 mx-24" />
+              <Outlet />
             </div>
           </div>
         ) : (

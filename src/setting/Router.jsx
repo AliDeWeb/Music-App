@@ -8,16 +8,25 @@ import AdminDashboard from "../pages/AdminDashboard/AdminDashboard.jsx";
 import Users from "../pages/Users/Users.jsx";
 import Songs from "../pages/Songs/Songs.jsx";
 
-let routesPath = [
-  { path: "/", element: <Home /> },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/play/:id", element: <Player /> },
-  { path: "/list", element: <MusicsList /> },
-  { path: "/admin-panel", element: <AdminDashboard /> },
-  { path: "/uploadfile", element: <UploadSong /> },
-  { path: "/users", element: <Users /> },
-  { path: "/songs", element: <Songs /> },
-  { path: "/*", element: <Page404 /> },
-];
+import { Route, Routes } from "react-router-dom";
 
-export default routesPath;
+import React from "react";
+
+export default function Router() {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/play/:id" element={<Player />} />
+        <Route path="/list" element={<MusicsList />} />
+        <Route path="/admin-panel" element={<AdminDashboard />}>
+          <Route path="uploadfile" element={<UploadSong />} />
+          <Route path="users" element={<Users />} />
+          <Route path="songs" element={<Songs />} />
+        </Route>
+        <Route path="/*" element={<Page404 />} />
+      </Routes>
+    </>
+  );
+}

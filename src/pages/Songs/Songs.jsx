@@ -15,10 +15,6 @@ import { editSongData } from "../../setting/Funcs/funcs";
 import { getSongData } from "../../setting/Funcs/funcs";
 import { getSongDataApi } from "../../setting/Funcs/API";
 
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import AdminPanelSideBar from "../../components/AdminPanelSideBar/AdminPanelSideBar";
-import PreviosPage from "../../components/PreviosPage/PreviosPage";
-
 import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
@@ -79,7 +75,6 @@ export default function Songs() {
 
   return (
     <div className="min-h-[100dvh] bg-[#131313]">
-      <PreviosPage />
       {showConformDeleteModal ? (
         <div className="w-screen h-[100dvh] backdrop-blur-md fixed z-50 top-0 right-0 left-0 m-auto flex items-center justify-center">
           <div className="w-[580px] h-[250px] bg-[#1d1d1d] rounded-2xl flex flex-col justify-center items-center text-white font-inter-bold font-bold text-xl">
@@ -259,13 +254,7 @@ export default function Songs() {
         ) : (
           ""
         )}
-        <NavigationBar
-          itemArray={[
-            { title: "Upload", path: "uploadfile" },
-            { title: "Users", path: "users" },
-            { title: "Songs", path: "songs" },
-          ]}
-        />
+
         {showPage ? (
           <div className="flex justify-center">
             {window.innerWidth < 640 ? (
@@ -276,65 +265,58 @@ export default function Songs() {
               </h2>
             ) : (
               <>
-                <div className="hidden lg:block lg:w-1/6">
-                  <AdminPanelSideBar />
-                </div>
-                <div className="w-full lg:w-5/6 px-10">
-                  <table className="table-fixed text-white w-full">
-                    <thead>
-                      <tr>
-                        <th className="text-left pb-6">#</th>
-                        <th className="text-left pb-6">Name</th>
-                        <th className="text-left pb-6">Singer</th>
-                        <th className="text-left pb-6">Genre</th>
-                        <th className="text-left pb-6">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {songs.map((el, index) => (
-                        <React.Fragment key={Math.random()}>
-                          <tr>
-                            <td className="size-[180px] rounded-l-md">
-                              <img
-                                className="size-full"
-                                src={el[1].cover}
-                                alt="img"
-                              />
-                            </td>
-                            <td className="p-1.5 pl-5 bg-gray-800">
-                              {el[1].title}
-                            </td>
-                            <td className="p-1.5 bg-gray-800">
-                              {el[1].singer}
-                            </td>
-                            <td className="p-1.5 bg-gray-800">{el[1].genre}</td>
-                            <td className="p-1.5 h-[180px] bg-gray-800 rounded-r-md flex items-center justify-start gap-2">
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setEdittingSongId(el[0]);
-                                  setShowEditModal(true);
-                                }}
-                              >
-                                <MdModeEditOutline size="1.5em" color="#fff" />
-                              </button>
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setEdittingSongId(el[0]);
-                                  setShowConformDeleteModal(true);
-                                }}
-                              >
-                                <MdDelete size="1.5em" color="#fff" />
-                              </button>
-                            </td>
-                          </tr>
-                          <br />
-                        </React.Fragment>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <table className="table-fixed text-white w-full">
+                  <thead>
+                    <tr>
+                      <th className="text-left pb-6">#</th>
+                      <th className="text-left pb-6">Name</th>
+                      <th className="text-left pb-6">Singer</th>
+                      <th className="text-left pb-6">Genre</th>
+                      <th className="text-left pb-6">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {songs.map((el, index) => (
+                      <React.Fragment key={Math.random()}>
+                        <tr>
+                          <td className="size-[180px] rounded-l-md">
+                            <img
+                              className="size-full"
+                              src={el[1].cover}
+                              alt="img"
+                            />
+                          </td>
+                          <td className="p-1.5 pl-5 bg-gray-800">
+                            {el[1].title}
+                          </td>
+                          <td className="p-1.5 bg-gray-800">{el[1].singer}</td>
+                          <td className="p-1.5 bg-gray-800">{el[1].genre}</td>
+                          <td className="p-1.5 h-[180px] bg-gray-800 rounded-r-md flex items-center justify-start gap-2">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setEdittingSongId(el[0]);
+                                setShowEditModal(true);
+                              }}
+                            >
+                              <MdModeEditOutline size="1.5em" color="#fff" />
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setEdittingSongId(el[0]);
+                                setShowConformDeleteModal(true);
+                              }}
+                            >
+                              <MdDelete size="1.5em" color="#fff" />
+                            </button>
+                          </td>
+                        </tr>
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                </table>
               </>
             )}
           </div>

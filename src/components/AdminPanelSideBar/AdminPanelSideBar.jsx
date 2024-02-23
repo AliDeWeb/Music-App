@@ -5,23 +5,19 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMusicalNotesOutline } from "react-icons/io5";
 import { MdOutlineCloudUpload } from "react-icons/md";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function AdminPanelSideBar() {
   return (
-    <div className="sticky top-20 divide-y-[1px] divide-gray-400  font-inter-sem font-bold text-lg h-[90dvh] overflow-auto">
+    <div className="divide-y-[1px] divide-gray-400  font-inter-sem font-bold text-lg h-[90dvh] overflow-auto">
       <div className="py-6 pl-2">
-        <NavLink
-          className={(link) =>
-            link.isActive
-              ? "flex items-center gap-2 text-red-600 pl-3"
-              : "flex items-center gap-2 text-white transition-all relative before:content-[''] before:w-[0] before:h-[7px] before:bg-red-600 before:rounded-full before:absolute before:top-0 before:bottom-0 before:left-1 before:my-auto before:transition-all  hover:pl-[30px] hover:before:w-[20px]"
-          }
+        <Link
+          className="flex items-center gap-2 text-white transition-all relative before:content-[''] before:w-[0] before:h-[7px] before:bg-red-600 before:rounded-full before:absolute before:top-0 before:bottom-0 before:left-1 before:my-auto before:transition-all  hover:pl-[30px] hover:before:w-[20px]"
           to="/admin-panel"
         >
           <IoHomeOutline color="#fff" />
           Panel
-        </NavLink>
+        </Link>
       </div>
       <div className="py-6 pl-2">
         <NavLink
@@ -30,7 +26,7 @@ export default function AdminPanelSideBar() {
               ? "flex items-center gap-2 text-red-600 pl-3"
               : "flex items-center gap-2 text-white transition-all relative before:content-[''] before:w-[0] before:h-[7px] before:bg-red-600 before:rounded-full before:absolute before:top-0 before:bottom-0 before:left-1 before:my-auto before:transition-all  hover:pl-[30px] hover:before:w-[20px]"
           }
-          to="/users"
+          to="/admin-panel/users"
         >
           <FaRegUser color="#fff" />
           Users
@@ -43,7 +39,7 @@ export default function AdminPanelSideBar() {
               ? "flex items-center gap-2 text-red-600 pl-3"
               : "flex items-center gap-2 text-white transition-all relative before:content-[''] before:w-[0] before:h-[7px] before:bg-red-600 before:rounded-full before:absolute before:top-0 before:bottom-0 before:left-1 before:my-auto before:transition-all  hover:pl-[30px] hover:before:w-[20px]"
           }
-          to="/songs"
+          to="/admin-panel/songs"
         >
           <IoMusicalNotesOutline color="#fff" />
           Songs List
@@ -56,7 +52,7 @@ export default function AdminPanelSideBar() {
               ? "flex items-center gap-2 text-red-600 pl-3"
               : "flex items-center gap-2 text-white transition-all relative before:content-[''] before:w-[0] before:h-[7px] before:bg-red-600 before:rounded-full before:absolute before:top-0 before:bottom-0 before:left-1 before:my-auto before:transition-all  hover:pl-[30px] hover:before:w-[20px]"
           }
-          to="/uploadfile"
+          to="/admin-panel/uploadfile"
         >
           <MdOutlineCloudUpload color="#fff" />
           Upload

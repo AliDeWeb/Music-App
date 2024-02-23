@@ -1,4 +1,7 @@
 @import url(output.css);
+:root {
+  overflow-x: hidden;
+}
 body {
   overflow-x: hidden;
   font-family: abel-sem;
@@ -51,4 +54,8 @@ body {
   border-radius: 1rem !important;
   max-width: 340px !important;
   margin-bottom: 5rem !important;
+}
+.header {
+  position: sticky;
+  top: 0;
 }
