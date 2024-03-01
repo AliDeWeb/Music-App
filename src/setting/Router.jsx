@@ -7,6 +7,7 @@ import UploadSong from "../pages/UploadSong/UploadSong.jsx";
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard.jsx";
 import Users from "../pages/Users/Users.jsx";
 import Songs from "../pages/Songs/Songs.jsx";
+import UserDashboard from "../pages/UserDashboard/UserDashboard.jsx";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -25,6 +26,7 @@ export default function Router() {
           <Route path="users" element={<Users />} />
           <Route path="songs" element={<Songs />} />
         </Route>
+        <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/*" element={<Page404 />} />
       </Routes>
     </>
