@@ -54,8 +54,8 @@ export default function UserDashboard() {
       <PreviosPage />
       <div className="container">
         <NavigationBar />
-        <div className="flex">
-          <div className="hidden lg:block lg:w-1/6">
+        <div className="flex flex-col lg:flex-row lg:gap-0">
+          <div className="lg:w-1/6">
             <div className="size-36 mx-auto">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -99,7 +99,7 @@ export default function UserDashboard() {
                 />
               )}
             </p>
-            <div className="flex flex-col mt-10 items-start gap-4 child:text-white child:py-2 child:px-4 child:border child:border-red-600 child:rounded-xl child-hover:bg-red-600/20 child:transition-all">
+            <div className="flex justify-center lg:justify-start lg:flex-col mt-10 items-start gap-4 child:text-white child:py-2 child:px-4 child:border child:border-red-600 child:rounded-xl child-hover:bg-red-600/20 child:transition-all">
               <button
                 onClick={(e) => {
                   if (e.target.innerHTML === `Edit Name`) {
@@ -150,19 +150,19 @@ export default function UserDashboard() {
               </button>
             </div>
           </div>
-          <div className="w-full lg:w-5/6">
-            <p className="text-center text-[#a0a0a0] text-4xl">
+          <div className="lg:w-5/6">
+            <p className="text-center text-[#a0a0a0] text-4xl hidden lg:block">
               Welcome{" "}
               <span className="text-white">
                 {username ? username : `loading`}
               </span>{" "}
               ...
             </p>
-            <div className="flex flex-col pl-14 mt-16">
-              <p className="text-white text-2xl font-abel-reg font-bold text-center">
+            <div className="flex flex-col lg:pl-14 mt-16">
+              <p className="text-white text-2xl font-abel-reg font-bold text-center hidden lg:block">
                 You're Interested In:
               </p>
-              <div className="mt-5 flex justify-center">
+              <div className="lg:mt-5 flex justify-center">
                 <BarChart
                   style={{ width: `600px`, height: `300px` }}
                   width={600}
